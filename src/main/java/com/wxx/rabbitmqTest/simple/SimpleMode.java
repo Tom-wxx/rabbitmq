@@ -1,4 +1,4 @@
-package com.wxx.rabbitmq.simple;
+package com.wxx.rabbitmqTest.simple;
 
 
 /**

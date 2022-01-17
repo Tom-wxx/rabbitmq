@@ -1,11 +1,11 @@
-package com.wxx.rabbitmq.simple;
+package com.wxx.rabbitmqTest.simple;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 //amqp协议
-
+/** 简单模式*/
 public class Producer {
 
     public static void main(String[] args) {
@@ -33,7 +33,7 @@ public class Producer {
             channel.queueDeclare(queueName,false,false,false,null);
             //5.准备发消息的内容
             String message="wxx 发来消大学奥斯丁息";
-            //6.发送消息给队列queue   params1： 交换机  实际生产中指定交换机  params2:队列、路由key  params3： 消息的状态控制 是否持久化   params4：消息的主体
+            //6.发送消息给队列queue   params1： 交换机  实际生产中指定交换机,这里没有指定是默认的  params2:队列、路由key  params3： 消息的状态控制 是否持久化   params4：消息的主体
             /**面试题：可以存在没有交换机的队列吗?  不可能的，虽然没有指定交换机，但是会存在一个默认的交换机*/
             channel.basicPublish("",queueName,null,message.getBytes());
 

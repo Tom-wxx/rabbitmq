@@ -1,4 +1,4 @@
-package com.wxx.rabbitmq.simple;
+package com.wxx.rabbitmqTest.simple;
 
 import com.rabbitmq.client.*;
 
@@ -20,11 +20,11 @@ public class Consumer {
         Connection connection = null;
         Channel channel = null;
         try {
-            //2.创建连接connection
+            //2.创建连接connection   rabbitmq为什么是基于channel处理而不是连接   ：   连接是短链接会经过三次握手会很慢。耗时很长，所以做了长连接--里面有信道，在高并发场景下一个连接有多个通道来处理消息
             connection = connectionFactory.newConnection("生产者");
             //3.通过连接获取通道channel
             channel = connection.createChannel();
-            //4.通过创建交换机，声明队列，绑定关系，由路由key发消息和接受消息
+            //4.通过创建交换机，声明队列，绑定关系，由路由key发消息和接受消息     路由key就相当于带了一个where条件，指定发送给谁
            channel.basicConsume("队列一", true, new DeliverCallback() {
                @Override
                public void handle(String s, Delivery message) throws IOException {
