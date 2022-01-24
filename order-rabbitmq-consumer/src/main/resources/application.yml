@@ -1,7 +1,6 @@
 server:
   port: 8738
 
-
 #配置rabbitmq
 spring:
   rabbitmq:
